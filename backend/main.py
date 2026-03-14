@@ -1,9 +1,12 @@
 from fastapi import FastAPI
+from pymongo import MongoClient
 
 app = FastAPI()
 
-# Temporary task storage
-tasks = []
+# Connect to MongoDB
+client = MongoClient("mongodb://localhost:27017/")
+db = client["taskdb"]
+tasks_collection = db["tasks"]
 
 @app.get("/")
 def home():
@@ -11,16 +14,17 @@ def home():
 
 @app.get("/tasks")
 def get_tasks():
+    tasks = []
+    for task in tasks_collection.find():
+        tasks.append(task["task"])
     return {"tasks": tasks}
 
 @app.post("/tasks")
 def add_task(task: str):
-    tasks.append(task)
-    return {"message": "Task added", "tasks": tasks}
+    tasks_collection.insert_one({"task": task})
+    return {"message": "Task added"}
 
 @app.delete("/tasks")
 def delete_task(task: str):
-    if task in tasks:
-        tasks.remove(task)
-        return {"message": "Task removed", "tasks": tasks}
-    return {"message": "Task not found"}
+    tasks_collection.delete_one({"task": task})
+    return {"message": "Task deleted"}
