@@ -24,7 +24,7 @@ jobs:
     - name: Install backend dependencies
       run: |
         cd backend
-        pip install fastapi uvicorn pymongo
+        pip install fastapi uvicorn pymongooooo
 
     - name: Run backend server check
       run: |
