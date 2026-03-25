@@ -51,4 +51,4 @@ jobs:
   
     - name: Build Docker image
       run: |
-      docker build -t task-manager-app ./backend
+        docker build -t task-manager-app ./backend
