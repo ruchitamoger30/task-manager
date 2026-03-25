@@ -52,3 +52,14 @@ jobs:
     - name: Build Docker image
       run: |
         docker build -t task-manager-app ./backend
+    - name: Login to Docker Hub
+      run: |
+        echo "${{ secrets.DOCKER_PASSWORD }}" | docker login -u "${{ secrets.DOCKER_USERNAME }}" --password-stdin
+
+    - name: Build Docker image
+      run: |
+        docker build -t ruchitamoger/task-manager-app ./backend
+ 
+    - name: Push Docker image
+      run: |
+        docker push ruchitamoger/task-manager-app
