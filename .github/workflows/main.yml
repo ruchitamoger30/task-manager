@@ -48,3 +48,7 @@ jobs:
 
     - name: Success message
       run: echo "CI Pipeline Passed 🎉"
+  
+    - name: Build Docker image
+      run: |
+      docker build -t task-manager-app ./backend
