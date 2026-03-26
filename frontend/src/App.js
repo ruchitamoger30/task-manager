@@ -4,7 +4,7 @@ function App() {
   const [task, setTask] = useState("");
   const [tasks, setTasks] = useState([]);
 
-  const API = "http://127.0.0.1:8000";
+  const API = "https://task-manager-app-latest.onrender.com";
 
   const fetchTasks = async () => {
     const res = await fetch(`${API}/tasks`);

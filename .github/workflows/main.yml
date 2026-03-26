@@ -47,6 +47,8 @@ jobs:
         npm run build
 
     - name: Success message
+      run: echo "CI Pipeline Passed"
+
       run: echo "CI Pipeline Passed 🎉"
   
     - name: Login to Docker Hub
@@ -55,8 +57,10 @@ jobs:
 
     - name: Build Docker image
       run: |
-        docker build -t ruchitamoger/task-manager-app ./backend
- 
+        docker build -t ruchitamoger/task-manager-app:latest ./backend
+
     - name: Push Docker image
       run: |
-        docker push ruchitamoger/task-manager-app
+
+        docker push ruchitamoger/task-manager-app:latest
+        
