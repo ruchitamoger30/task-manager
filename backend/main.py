@@ -5,9 +5,8 @@ from pymongo import MongoClient
 app = FastAPI()
 
 origins = [
-    "http://localhost:3000"
+    "https://task-manager-frontend-84ne.onrender.com"
 ]
-
 app.add_middleware(
     CORSMiddleware,
     allow_origins=origins,
