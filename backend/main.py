@@ -4,9 +4,8 @@ from pymongo import MongoClient
 
 app = FastAPI()
 
-origins = [
-    "https://task-manager-frontend-84ne.onrender.com"
-]
+origins = ["*"]  # TEMP (to fix your CORS quickly)
+
 app.add_middleware(
     CORSMiddleware,
     allow_origins=origins,
@@ -14,28 +13,11 @@ app.add_middleware(
     allow_methods=["*"],
     allow_headers=["*"],
 )
-# Connect to MongoDB
-client = MongoClient("mongodb+srv://ruchitamoger:Ruchita%40123@cluster0.d24do.mongodb.net/taskdb")
+
+# MongoDB Atlas connection
+client = MongoClient(
+    "mongodb+srv://ruchitamoger:Ruchita%40123@cluster0.d24do.mongodb.net/taskdb?retryWrites=true&w=majority"
+)
+
 db = client["taskdb"]
 tasks_collection = db["tasks"]
-
-@app.get("/")
-def home():
-    return {"message": "Task Manager API is running"}
-
-@app.get("/tasks")
-def get_tasks():
-    tasks = []
-    for task in tasks_collection.find():
-        tasks.append(task["task"])
-    return {"tasks": tasks}
-
-@app.post("/tasks")
-def add_task(task: str):
-    tasks_collection.insert_one({"task": task})
-    return {"message": "Task added"}
-
-@app.delete("/tasks")
-def delete_task(task: str):
-    tasks_collection.delete_one({"task": task})
-    return {"message": "Task deleted"}
