@@ -1,3 +1,4 @@
+import os
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi import FastAPI
 from pymongo import MongoClient
@@ -16,9 +17,7 @@ app.add_middleware(
 )
 
 # MongoDB Atlas connection
-client = MongoClient(
-    "mongodb+srv://ruchitamoger:Ruchita123@cluster0.d24do.mongodb.net/taskdb?retryWrites=true&w=majority"
-)
+client = MongoClient(os.getenv("MONGO_URL"))
 
 db = client["taskdb"]
 tasks_collection = db["tasks"]
