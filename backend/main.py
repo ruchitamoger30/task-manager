@@ -16,7 +16,7 @@ app.add_middleware(
 
 # MongoDB Atlas connection
 client = MongoClient(
-    "mongodb+srv://ruchitamoger:Ruchita%40123@cluster0.d24do.mongodb.net/taskdb?retryWrites=true&w=majority"
+    "mongodb+srv://ruchitamoger:SharadaAnanth@cluster0.d24do.mongodb.net/taskdb?retryWrites=true&w=majority"
 )
 
 db = client["taskdb"]
