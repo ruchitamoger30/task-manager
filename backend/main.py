@@ -15,7 +15,7 @@ app.add_middleware(
     allow_headers=["*"],
 )
 # Connect to MongoDB
-client = MongoClient("mongodb://mongodb:27017")
+client = MongoClient("mongodb+srv://ruchitamoger:Ruchita@123@cluster0.d24do.mongodb.net/?appName=Cluster0")
 db = client["taskdb"]
 tasks_collection = db["tasks"]
 
